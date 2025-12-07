@@ -3,7 +3,7 @@ import { startPlayer, switchSong } from './player.js';
 import { initSearch } from './search.js';
 import { $, randomCover } from './utils.js';
 
-export const SOURCES_URL = 'https://TB-SYS-ASD.github.com/123panplayer/data/sources.json';
+export const SOURCES_URL = 'https://tb-sys-asd.github.io/123panplayer/data/sources.json';
 let allAudio = [];
 
 (async () => {
