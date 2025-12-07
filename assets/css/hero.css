@@ -1,0 +1,4 @@
+﻿.hero{display:flex;align-items:center;justify-content:space-between;min-height:60vh;padding:0 10vw;}
+.hero h1{font-size:clamp(2.5rem,5vw,4rem);margin:0 0 10px;background:linear-gradient(90deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.cover img{width:clamp(200px,30vw,320px);border-radius:var(--radius);box-shadow:0 20px 40px #00000099;animation:float 4s ease-in-out infinite;}
+@keyframes float{50%{transform:translateY(-8px)}}

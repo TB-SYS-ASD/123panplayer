@@ -1,0 +1,8 @@
+﻿.card{display:flex;align-items:center;background:var(--surface);border-radius:var(--radius);padding:12px;margin:8px auto;max-width:600px;position:relative;cursor:pointer;transition:var(--transition);}
+.card::before{content:'';position:absolute;inset:0;border-radius:var(--radius);padding:2px;background:linear-gradient(45deg,var(--primary),var(--secondary));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:var(--transition);}
+.card:hover::before{opacity:1;}
+.card:hover{transform:scale(1.02);}
+.card-cover{width:56px;height:56px;border-radius:8px;background:linear-gradient(45deg,var(--secondary),var(--primary));}
+.card-info{flex:1;margin-left:12px;}
+.card-info .artist{font-size:12px;color:var(--text2);}
+.play-btn{background:none;border:none;color:var(--primary);font-size:24px;cursor:pointer;}

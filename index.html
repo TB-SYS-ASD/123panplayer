@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>WebDAV 云合辑</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#121212">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:;base64,">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/hero.css">
+<link rel="stylesheet" href="assets/css/card.css">
+<link rel="stylesheet" href="assets/css/player.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+</head>
+<body>
+<section class="hero">
+  <div class="left">
+    <h1>WebDAV 云合辑</h1>
+    <p>所有人共享的音乐宇宙</p>
+    <a class="btn" href="#list">立即聆听</a>
+  </div>
+  <div class="cover">
+    <img id="heroCover" src="https://picsum.photos/400/400?random=1" alt="cover">
+  </div>
+</section>
+
+<input id="search" placeholder="搜索歌名 / 来源" autocomplete="off">
+
+<div id="tips">正在加载播放列表…</div>
+<div id="list"></div>
+<div id="aplayer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

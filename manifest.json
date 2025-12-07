@@ -1,0 +1,15 @@
+﻿{
+  "name": "WebDAV 云合辑",
+  "short_name": "WebDAV Music",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#00ddff",
+  "icons": [
+    {
+      "src": "https://picsum.photos/512/512?random=icon",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

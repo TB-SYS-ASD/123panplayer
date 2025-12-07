@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>添加 WebDAV 源</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;background:#121212;color:#fff;padding:40px}
+input,button{width:100%;padding:12px;margin:8px 0;font-size:14px;border-radius:12px;border:0}
+button{background:linear-gradient(90deg,#00ddff,#ff00aa);color:#fff;cursor:pointer}
+label{cursor:pointer;display:flex;align-items:center;gap:8px;margin:10px 0}
+#log{margin-top:10px;font-size:12px;color:#aaa}
+</style>
+</head>
+<body>
+<h2>🎵 共享你的 WebDAV 音乐源</h2>
+<input id="name" placeholder="给你的源起个名字" required>
+<input id="url" placeholder="WebDAV 目录地址" required>
+<input id="user" placeholder="用户名" required>
+<input id="pass" type="password" placeholder="密码" required>
+<label><input type="checkbox" id="isPublic" checked> 公开发布（所有人可见）</label>
+<button onclick="submit()">测试连接并提交</button>
+<div id="log"></div>
+
+<script>
+async function submit(){
+  const name=document.getElementById('name').value.trim();
+  const url=document.getElementById('url').value.trim();
+  const user=document.getElementById('user').value.trim();
+  const pass=document.getElementById('pass').value.trim();
+  const isPublic=document.getElementById('isPublic').checked;
+  if(!name||!url||!user||!pass)return alert('请完整填写');
+  log('正在测试连接…');
+  try{
+    await fetch(url,{method:'PROPFIND',headers:{
+      'Authorization':'Basic '+btoa(user+':'+pass),
+      'Depth':'1','Content-Type':'application/xml'},body:' '});
+  }catch(e){log('连接失败');return;}
+  log('连接成功！生成 PR 中…');
+  const newSource={
+    id:'u'+Date.now(),
+    name,
+    url,
+    user:'',          // 密码不放仓库
+    pass:'',
+    public:isPublic,  // ✅ 关键
+    submitter:name
+  };
+  const target='https://github.com/你的用户名/你的仓库/edit/main/data/sources.json';
+  const msg='Add WebDAV source: '+name;
+  const prLink=target+'?message='+encodeURIComponent(msg)+'&value='+encodeURIComponent(JSON.stringify([newSource],null,2));
+  location.href=prLink;
+}
+function log(t){document.getElementById('log').textContent=t;}
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿name: auto-merge-sources
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Verify single file
+        run: |
+          files=$(git diff --name-only HEAD^ HEAD | xargs)
+          if [[ "$files" != "data/sources.json" ]]; then exit 1; fi
+      - name: Validate JSON
+        run: jq . data/sources.json > /dev/null
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              merge_method: 'squash'
+            });
